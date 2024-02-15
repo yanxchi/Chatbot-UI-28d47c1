@@ -13,6 +13,8 @@ import { VALID_ENV_KEYS } from "@/types/valid-keys"
 import { Dispatch, SetStateAction, createContext } from "react"
 
 interface ChatbotUIContext {
+  // Context used to pass data through the
+  // component tree without having to pass props down manually at every level.
   // PROFILE STORE
   profile: Tables<"profiles"> | null
   setProfile: Dispatch<SetStateAction<Tables<"profiles"> | null>>
