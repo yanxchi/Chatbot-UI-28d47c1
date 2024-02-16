@@ -1,15 +1,12 @@
-import { Brand } from "@/components/ui/brand"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { ChatbotUISVG } from "@/components/icons/chatbotui-svg"
 import { SubmitButton } from "@/components/ui/submit-button"
 import { createClient } from "@/lib/supabase/server"
 import { Database } from "@/supabase/types"
 import { createServerClient } from "@supabase/ssr"
-import { get } from "@vercel/edge-config"
+import { IconArrowRight } from "@tabler/icons-react"
 import { Metadata } from "next"
-import { cookies, headers } from "next/headers"
+import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import { useEffect, useState } from "react"
 
 export const metadata: Metadata = {
   title: "Login"
@@ -20,7 +17,7 @@ export default async function Login({
 }: {
   searchParams: { message: string }
 }) {
-  const cookieStore = cookies()
+  const cookieStore = cookies() // read HTTP incoming request cookies
   const supabase = createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -49,21 +46,24 @@ export default async function Login({
     return redirect(`/${homeWorkspace.id}/chat`)
   }
 
-  const defaultUsername = "user@gmail.com"
+  const defaultEmail = "user@gmail.com"
   const defaultPassword = "password"
 
-  const signIn = async () => {
+  const signIn = async (formData: FormData) => {
     "use server"
 
-    const email = defaultUsername
+    const email = defaultEmail
     const password = defaultPassword
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
+    console.log(formData)
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password
     })
+
+    console.log(data)
 
     if (error) {
       return redirect(`/login?message=${error.message}`)
@@ -85,11 +85,23 @@ export default async function Login({
     return redirect(`/${homeWorkspace.id}/chat`)
   }
 
-  await signIn()
-
   return (
-    <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 sm:max-w-md">
-      Loading...
+    <div className="flex size-full flex-col items-center justify-center">
+      <form
+        className="flex size-full flex-col items-center justify-center"
+        action={signIn}
+      >
+        <div>
+          <ChatbotUISVG theme={"dark"} scale={0.3} />
+        </div>
+
+        <div className="mt-2 text-4xl font-bold">Chatbot UI</div>
+
+        <SubmitButton className="mt-4 flex w-[200px] items-center justify-center rounded-md bg-blue-500 p-2 font-semibold">
+          Start Chatting
+          <IconArrowRight className="ml-1" size={20} />
+        </SubmitButton>
+      </form>
     </div>
   )
 }
