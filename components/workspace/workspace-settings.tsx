@@ -153,7 +153,7 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
       })
     })
 
-    toast.success("Workspace updated!")
+    toast.success("Settings updated!")
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -168,7 +168,7 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <WithTooltip
-          display={<div>Workspace Settings</div>}
+          display={<div>Settings</div>}
           trigger={
             <IconSettings
               className="ml-3 cursor-pointer pr-[5px] hover:opacity-50"
@@ -186,19 +186,19 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
       >
         <div className="grow overflow-auto">
           <SheetHeader>
-            <SheetTitle className="flex items-center justify-between">
-              Workspace Settings
-              {selectedWorkspace?.is_home && <IconHome />}
+            <SheetTitle className="mb-5 flex items-center">
+              Settings
+              {/* {selectedWorkspace?.is_home && <IconHome />} */}
             </SheetTitle>
 
-            {selectedWorkspace?.is_home && (
+            {/* {selectedWorkspace?.is_home && (
               <div className="text-sm font-light">
                 This is your home workspace for personal use.
               </div>
-            )}
+            )} */}
           </SheetHeader>
 
-          <Tabs defaultValue="main">
+          {/* <Tabs defaultValue="main">
             <TabsList className="mt-4 grid w-full grid-cols-2">
               <TabsTrigger value="main">Main</TabsTrigger>
               <TabsTrigger value="defaults">Defaults</TabsTrigger>
@@ -216,7 +216,7 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
                   />
                 </div>
 
-                {/* <div className="space-y-1">
+                <div className="space-y-1">
                   <Label>Description</Label>
 
                   <Input
@@ -224,7 +224,7 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                   />
-                </div> */}
+                </div>
 
                 <div className="space-y-1">
                   <Label>Image</Label>
@@ -270,7 +270,11 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
                 onChangeChatSettings={setDefaultChatSettings}
               />
             </TabsContent>
-          </Tabs>
+          </Tabs> */}
+          <ChatSettingsForm
+            chatSettings={defaultChatSettings as any}
+            onChangeChatSettings={setDefaultChatSettings}
+          />
         </div>
 
         <div className="mt-6 flex justify-between">

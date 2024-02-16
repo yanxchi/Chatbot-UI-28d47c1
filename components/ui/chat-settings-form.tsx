@@ -4,7 +4,7 @@ import { ChatbotUIContext } from "@/context/context"
 import { CHAT_SETTING_LIMITS } from "@/lib/chat-setting-limits"
 import { ChatSettings } from "@/types"
 import { IconInfoCircle } from "@tabler/icons-react"
-import { FC, useContext } from "react"
+import { FC, useContext, useState } from "react"
 import { ModelSelect } from "../models/model-select"
 import { AdvancedSettings } from "./advanced-settings"
 import { Checkbox } from "./checkbox"
@@ -19,6 +19,8 @@ import {
 import { Slider } from "./slider"
 import { TextareaAutosize } from "./textarea-autosize"
 import { WithTooltip } from "./with-tooltip"
+import { LimitDisplay } from "./limit-display"
+import { WORKSPACE_INSTRUCTIONS_MAX } from "@/db/limits"
 
 interface ChatSettingsFormProps {
   chatSettings: ChatSettings
@@ -33,7 +35,10 @@ export const ChatSettingsForm: FC<ChatSettingsFormProps> = ({
   useAdvancedDropdown = true,
   showTooltip = true
 }) => {
-  const { profile, models } = useContext(ChatbotUIContext)
+  const { profile, models, selectedWorkspace } = useContext(ChatbotUIContext)
+  const [instructions, setInstructions] = useState(
+    selectedWorkspace?.instructions || ""
+  )
 
   if (!profile) return null
 
@@ -62,6 +67,23 @@ export const ChatSettingsForm: FC<ChatSettingsFormProps> = ({
           value={chatSettings.prompt}
           minRows={3}
           maxRows={6}
+        />
+      </div>
+
+      <div className="space-y-1">
+        <Label>How would you like the AI to respond in this workspace?</Label>
+
+        <TextareaAutosize
+          placeholder="Instructions... (optional)"
+          value={instructions}
+          onValueChange={setInstructions}
+          minRows={5}
+          maxRows={10}
+        />
+
+        <LimitDisplay
+          used={instructions.length}
+          limit={WORKSPACE_INSTRUCTIONS_MAX}
         />
       </div>
 

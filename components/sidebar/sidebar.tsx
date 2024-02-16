@@ -4,9 +4,9 @@ import { ContentType } from "@/types"
 import { FC, useContext } from "react"
 import { SIDEBAR_WIDTH } from "../ui/dashboard"
 import { TabsContent } from "../ui/tabs"
-import { WorkspaceSwitcher } from "../utility/workspace-switcher"
 import { WorkspaceSettings } from "../workspace/workspace-settings"
 import { SidebarContent } from "./sidebar-content"
+import { IconHome } from "@tabler/icons-react"
 
 interface SidebarProps {
   contentType: ContentType
@@ -61,9 +61,8 @@ export const Sidebar: FC<SidebarProps> = ({ contentType, showSidebar }) => {
       value={contentType}
     >
       <div className="flex h-full flex-col p-3">
-        <div className="flex items-center border-b-2 pb-2">
-          <WorkspaceSwitcher />
-
+        <div className="flex items-center justify-between border-b-2 pb-2 text-lg font-semibold">
+          COCO
           <WorkspaceSettings />
         </div>
 
