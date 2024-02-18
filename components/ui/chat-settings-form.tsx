@@ -1,3 +1,5 @@
+// internal form
+
 "use client"
 
 import { ChatbotUIContext } from "@/context/context"
@@ -25,6 +27,7 @@ import { WORKSPACE_INSTRUCTIONS_MAX } from "@/db/limits"
 interface ChatSettingsFormProps {
   chatSettings: ChatSettings
   onChangeChatSettings: (value: ChatSettings) => void
+  onChangeInstructions: (instructions: string) => void
   useAdvancedDropdown?: boolean
   showTooltip?: boolean
 }
@@ -32,6 +35,7 @@ interface ChatSettingsFormProps {
 export const ChatSettingsForm: FC<ChatSettingsFormProps> = ({
   chatSettings,
   onChangeChatSettings,
+  onChangeInstructions, // new
   useAdvancedDropdown = true,
   showTooltip = true
 }) => {
@@ -76,7 +80,10 @@ export const ChatSettingsForm: FC<ChatSettingsFormProps> = ({
         <TextareaAutosize
           placeholder="Instructions... (optional)"
           value={instructions}
-          onValueChange={setInstructions}
+          onValueChange={value => {
+            setInstructions(value)
+            onChangeInstructions(value)
+          }}
           minRows={5}
           maxRows={10}
         />

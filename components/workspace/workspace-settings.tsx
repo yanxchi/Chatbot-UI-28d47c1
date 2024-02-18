@@ -1,5 +1,6 @@
+// main form
+
 import { ChatbotUIContext } from "@/context/context"
-import { WORKSPACE_INSTRUCTIONS_MAX } from "@/db/limits"
 import {
   getWorkspaceImageFromStorage,
   uploadWorkspaceImage
@@ -7,15 +8,11 @@ import {
 import { updateWorkspace } from "@/db/workspaces"
 import { convertBlobToBase64 } from "@/lib/blob-to-b64"
 import { LLMID } from "@/types"
-import { IconHome, IconSettings } from "@tabler/icons-react"
+import { IconSettings } from "@tabler/icons-react"
 import { FC, useContext, useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
 import { Button } from "../ui/button"
 import { ChatSettingsForm } from "../ui/chat-settings-form"
-import ImagePicker from "../ui/image-picker"
-import { Input } from "../ui/input"
-import { Label } from "../ui/label"
-import { LimitDisplay } from "../ui/limit-display"
 import {
   Sheet,
   SheetContent,
@@ -23,8 +20,6 @@ import {
   SheetTitle,
   SheetTrigger
 } from "../ui/sheet"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
-import { TextareaAutosize } from "../ui/textarea-autosize"
 import { WithTooltip } from "../ui/with-tooltip"
 import { DeleteWorkspace } from "./delete-workspace"
 
@@ -274,6 +269,7 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
           <ChatSettingsForm
             chatSettings={defaultChatSettings as any}
             onChangeChatSettings={setDefaultChatSettings}
+            onChangeInstructions={setInstructions}
           />
         </div>
 
