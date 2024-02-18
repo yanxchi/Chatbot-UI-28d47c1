@@ -35,6 +35,8 @@ export default function ChatPage() {
             <QuickSettings />
           </div> */}
 
+          {/* TODO: Add in conversation starters */}
+
           <div className="flex grow flex-col items-center justify-center" />
 
           <div className="w-[300px] pb-8 sm:w-[400px] md:w-[500px] lg:w-[660px] xl:w-[800px]">

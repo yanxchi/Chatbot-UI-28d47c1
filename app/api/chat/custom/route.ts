@@ -1,3 +1,5 @@
+// TODO: Edit in base URL here OR add in new route.ts file under fastChat folder.
+
 import { Database } from "@/supabase/types"
 import { ChatSettings } from "@/types"
 import { createClient } from "@supabase/supabase-js"

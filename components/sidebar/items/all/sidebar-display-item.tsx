@@ -107,7 +107,6 @@ export const SidebarItem: FC<SidebarItemProps> = ({
           {item.name}
         </div>
 
-        {/* TODO */}
         {/* {isHovering && (
           <WithTooltip
             delayDuration={1000}

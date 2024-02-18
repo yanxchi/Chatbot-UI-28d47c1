@@ -1,4 +1,4 @@
-// TODO: Separate into multiple contexts, keeping simple for now
+// Separate into multiple contexts, keeping simple for now
 
 "use client"
 
