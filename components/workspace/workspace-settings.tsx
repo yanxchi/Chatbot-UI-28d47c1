@@ -108,9 +108,8 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
       default_temperature: defaultChatSettings.temperature,
       default_context_length: defaultChatSettings.contextLength,
       embeddings_provider: defaultChatSettings.embeddingsProvider,
-      include_profile_context: defaultChatSettings.includeProfileContext,
-      include_workspace_instructions:
-        defaultChatSettings.includeWorkspaceInstructions
+      include_profile_context: true,
+      include_workspace_instructions: true
     })
 
     if (

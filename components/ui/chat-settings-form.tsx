@@ -193,7 +193,7 @@ const AdvancedContent: FC<AdvancedContentProps> = ({
         />
       </div>
 
-      <div className="mt-7 flex items-center space-x-2">
+      {/* <div className="mt-7 flex items-center space-x-2">
         <Checkbox
           checked={chatSettings.includeProfileContext}
           onCheckedChange={(value: boolean) =>
@@ -219,9 +219,9 @@ const AdvancedContent: FC<AdvancedContentProps> = ({
             }
           />
         )}
-      </div>
+      </div> */}
 
-      <div className="mt-4 flex items-center space-x-2">
+      {/* <div className="mt-4 flex items-center space-x-2">
         <Checkbox
           checked={chatSettings.includeWorkspaceInstructions}
           onCheckedChange={(value: boolean) =>
@@ -248,7 +248,7 @@ const AdvancedContent: FC<AdvancedContentProps> = ({
             }
           />
         )}
-      </div>
+      </div> */}
 
       <div className="mt-5">
         <Label>Embeddings Provider</Label>
